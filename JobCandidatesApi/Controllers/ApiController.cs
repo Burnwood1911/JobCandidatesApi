@@ -37,11 +37,7 @@ namespace JobCandidatesApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error Task Failed.");
             }
 
-
         }
-
-      
-
 
     }
 }

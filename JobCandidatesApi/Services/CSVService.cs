@@ -2,7 +2,6 @@
 using System.Globalization;
 using JobCandidatesApi.Models;
 using CsvHelper.Configuration;
-using System.Diagnostics;
 
 
 namespace JobCandidatesApi.Services
@@ -56,6 +55,7 @@ namespace JobCandidatesApi.Services
 
         }
 
+        //newaddition checks if it is the first record in the csv if so it adds the headers.
         public void CreateCandidate(Candidate record, bool newAddition)
         {
             if (newAddition) {
@@ -77,7 +77,6 @@ namespace JobCandidatesApi.Services
                 }
             }
             
-           
 
         }
 
