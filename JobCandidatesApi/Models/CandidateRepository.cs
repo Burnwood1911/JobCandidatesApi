@@ -18,7 +18,7 @@ namespace JobCandidatesApi.Models
             if(candidate == null) { return null; }
             var email = candidate.Email;
 
-            if(File.Exists(@"D:\file.csv"))
+            if(File.Exists(@"file.csv"))
             {
                 var candidates = _csvService.ReadCSV<Candidate>();
 

@@ -14,7 +14,7 @@ namespace JobCandidatesApi.Services
             {
                 HasHeaderRecord = false,
             };
-            var reader = new StreamReader("D:\\file.csv");
+            var reader = new StreamReader(@"file.csv");
             var csv = new CsvReader(reader, config);
                
             var records = csv.GetRecords<T>().ToList();
@@ -30,7 +30,7 @@ namespace JobCandidatesApi.Services
             {
                 HasHeaderRecord = false,
             };
-            var reader = new StreamReader("D:\\file.csv");
+            var reader = new StreamReader(@"file.csv");
 
             var csv = new CsvReader(reader, config);
 
@@ -42,9 +42,9 @@ namespace JobCandidatesApi.Services
             csv.Dispose();
             reader.Close();
 
-            File.Delete("D:\\file.csv");
+            File.Delete(@"file.csv");
 
-            using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
+            using (StreamWriter sw = File.AppendText(@"file.csv"))
             {
                 records.ForEach(i => {
                     var line = i.FirstName + "," + i.LastName + "," + i.PhoneNumber + "," + i.Email + "," + i.CallTime + "," + i.LinkedIn + "," + i.Github + "," + i.Comment;
@@ -59,7 +59,7 @@ namespace JobCandidatesApi.Services
         public void CreateCandidate(Candidate record, bool newAddition)
         {
             if (newAddition) {
-                using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
+                using (StreamWriter sw = File.AppendText(@"file.csv"))
                 {
                     sw.WriteLine("FirstName,LastName,PhoneNumber,Email,CallTime,LinkedIn,Github,Comment");
                     var line = record.FirstName + "," + record.LastName + "," + record.PhoneNumber + "," + record.Email + "," + record.CallTime + "," + record.LinkedIn + "," + record.Github + "," + record.Comment;
@@ -69,7 +69,7 @@ namespace JobCandidatesApi.Services
             }
             else
             {
-                using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
+                using (StreamWriter sw = File.AppendText(@"file.csv"))
                 {
                     var line = record.FirstName + "," + record.LastName + "," + record.PhoneNumber + "," + record.Email + "," + record.CallTime + "," + record.LinkedIn + "," + record.Github + "," + record.Comment;
                     sw.WriteLine(line);
