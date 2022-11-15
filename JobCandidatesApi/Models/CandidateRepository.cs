@@ -13,8 +13,9 @@ namespace JobCandidatesApi.Models
         }
 
 
-        public void CreateOrUpdateCandidate(Candidate candidate)
+        public Candidate? CreateOrUpdateCandidate(Candidate? candidate)
         {
+            if(candidate == null) { return null; }
             var email = candidate.Email;
 
             if(File.Exists(@"D:\file.csv"))
@@ -36,6 +37,8 @@ namespace JobCandidatesApi.Models
             {
                 _csvService.CreateCandidate(candidate, true);
             }
+
+            return candidate;
 
         }
        

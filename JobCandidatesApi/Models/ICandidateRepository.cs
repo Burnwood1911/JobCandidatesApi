@@ -2,7 +2,7 @@
 {
     public interface ICandidateRepository
     {
-        public void CreateOrUpdateCandidate(Candidate candidate);
+        public Candidate? CreateOrUpdateCandidate(Candidate candidate);
     }
 
 }

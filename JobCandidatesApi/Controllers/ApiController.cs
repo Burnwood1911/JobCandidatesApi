@@ -17,18 +17,21 @@ namespace JobCandidatesApi.Controllers
 
 
         [HttpPost()]
-        public IActionResult CreateOrUpdateCandidate(Candidate candidate)
+        public IActionResult CreateOrUpdateCandidate(Candidate? candidate)
         {
             try
             {
-                if (candidate == null)
+               
+                var cand = candidateRepository.CreateOrUpdateCandidate(candidate);
+
+                if (cand != null) {
+                    return Ok("Task completed succesfully");
+                }else
                 {
                     return BadRequest();
                 }
 
-                candidateRepository.CreateOrUpdateCandidate(candidate);
-
-                return Ok("Task completed succesfully");
+                
 
             }
             catch (Exception)
