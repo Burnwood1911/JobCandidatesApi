@@ -17,32 +17,7 @@ namespace JobCandidatesApi.Controllers
 
 
         [HttpPost()]
-        public IActionResult CreateCandidate(Candidate candidate)
-        {
-
-            try
-            {
-                if (candidate == null)
-                {
-                    return BadRequest();
-                }
-
-                var createdCandidate = candidateRepository.CreateCandidate(candidate);
-
-                return CreatedAtAction("create", createdCandidate);
-
-            }
-            catch (Exception)
-            {
-
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating candidate.");
-            }
-
-
-        }
-
-        [HttpPut()]
-        public IActionResult UpdateCandidate(Candidate candidate)
+        public IActionResult CreateOrUpdateCandidate(Candidate candidate)
         {
             try
             {
@@ -51,18 +26,21 @@ namespace JobCandidatesApi.Controllers
                     return BadRequest();
                 }
 
-                var updatedCandidate = candidateRepository.UpdateCandidate(candidate);
+                candidateRepository.CreateOrUpdateCandidate(candidate);
 
-                return Ok(updatedCandidate);
+                return Ok("Task completed succesfully");
 
             }
             catch (Exception)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating candidate.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error Task Failed.");
             }
 
+
         }
+
+      
 
 
     }

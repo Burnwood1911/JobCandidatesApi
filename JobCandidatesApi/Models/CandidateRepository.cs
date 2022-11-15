@@ -1,15 +1,43 @@
-﻿namespace JobCandidatesApi.Models
+﻿using JobCandidatesApi.Services;
+using System.Diagnostics;
+
+namespace JobCandidatesApi.Models
 {
     public class CandidateRepository : ICandidateRepository
     {
-        public Task<Candidate> CreateCandidate(Candidate candidate)
+        private readonly ICSVService _csvService;
+
+        public CandidateRepository(ICSVService csvService)
         {
-            throw new NotImplementedException();
+            _csvService = csvService;
         }
 
-        public Task<Candidate> UpdateCandidate(Candidate candidate)
+
+        public void CreateOrUpdateCandidate(Candidate candidate)
         {
-            throw new NotImplementedException();
+            var email = candidate.Email;
+
+            if(File.Exists(@"D:\file.csv"))
+            {
+                var candidates = _csvService.ReadCSV<Candidate>();
+
+                var doesCandidateExist = candidates.Any(c => c.Email == email);
+
+                if (doesCandidateExist)
+                {
+                    _csvService.UpdateCandidate(candidate);
+                }
+                else
+                {
+                    _csvService.CreateCandidate(candidate);
+                }
+
+            }else
+            {
+                _csvService.CreateCandidate(candidate);
+            }
+
         }
+       
     }
 }

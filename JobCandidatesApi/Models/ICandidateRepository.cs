@@ -2,8 +2,7 @@
 {
     public interface ICandidateRepository
     {
-        Task<Candidate> CreateCandidate(Candidate candidate);
-        Task<Candidate> UpdateCandidate(Candidate candidate);
+        public void CreateOrUpdateCandidate(Candidate candidate);
     }
 
 }
