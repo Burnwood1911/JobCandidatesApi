@@ -56,14 +56,27 @@ namespace JobCandidatesApi.Services
 
         }
 
-        public void CreateCandidate(Candidate record)
+        public void CreateCandidate(Candidate record, bool newAddition)
         {
-            using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
-            {
-                var line = record.FirstName + "," + record.LastName + "," + record.PhoneNumber + "," + record.Email + "," + record.CallTime + "," + record.LinkedIn + "," + record.Github + "," + record.Comment;
-                sw.WriteLine(line);
+            if (newAddition) {
+                using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
+                {
+                    sw.WriteLine("FirstName,LastName,PhoneNumber,Email,CallTime,LinkedIn,Github,Comment");
+                    var line = record.FirstName + "," + record.LastName + "," + record.PhoneNumber + "," + record.Email + "," + record.CallTime + "," + record.LinkedIn + "," + record.Github + "," + record.Comment;
+                    sw.WriteLine(line);
 
+                }
             }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(@"D:\file.csv"))
+                {
+                    var line = record.FirstName + "," + record.LastName + "," + record.PhoneNumber + "," + record.Email + "," + record.CallTime + "," + record.LinkedIn + "," + record.Github + "," + record.Comment;
+                    sw.WriteLine(line);
+
+                }
+            }
+            
            
 
         }

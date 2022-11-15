@@ -29,12 +29,12 @@ namespace JobCandidatesApi.Models
                 }
                 else
                 {
-                    _csvService.CreateCandidate(candidate);
+                    _csvService.CreateCandidate(candidate, false);
                 }
 
             }else
             {
-                _csvService.CreateCandidate(candidate);
+                _csvService.CreateCandidate(candidate, true);
             }
 
         }
